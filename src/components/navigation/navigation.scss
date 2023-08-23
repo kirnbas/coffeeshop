@@ -1,0 +1,21 @@
+nav.navbar {
+    font-size: 12px;
+    font-weight: 400;
+
+    a.nav-link {
+        margin-right: 30px;
+        position: relative;
+        color: #fff;
+
+        &.active {
+            color: #fff;
+        }
+    }
+
+    a.active::before {
+        content: url('../../img/ActiveIcon.png');
+        position: absolute;
+        left: -25px;
+        top: -15px;
+    }    
+}

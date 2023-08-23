@@ -1,0 +1,38 @@
+header.main_header {
+    padding-top: 50px;
+    padding-bottom: 200px;
+    
+    background: url("../../img/MainBg.jpg") no-repeat center center scroll;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+
+    h1 {
+        margin-top: 111px;
+        font-size: 40px;
+    }
+
+    h2 {
+        font-size: 24px;
+    }
+
+    .btn_more {
+        font-size: 14px;
+    }
+}
+
+header.additional_header {
+    padding-top: 50px;
+    padding-bottom: 85px;
+    
+    background: url("../../img/AdditionalBg.png") no-repeat center center scroll;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+
+    h1 {
+        font-size: 40px;
+    }
+}

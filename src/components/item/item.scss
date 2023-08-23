@@ -1,0 +1,22 @@
+.best_item {
+    padding-right: 20px;
+
+    img {
+        padding: 30px 30px 10px 30px;
+    }
+
+    .best_item_name {
+        font-size: 14px;
+        text-align: right;
+    }
+
+    .best_item_country {
+        text-align: right;
+    }
+
+    .best_item_price {
+        font-size: 14px;
+        font-weight: 700;
+        text-align: right;
+    }
+}
