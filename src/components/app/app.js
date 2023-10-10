@@ -27,13 +27,15 @@ class App extends Component {
             ],
             coffees: [
                 { id: 1, imgSrc: srcBest3, imgAlt: 'Coffee 1', name: 'AROMISTICO Coffee 1 kg', price: 6.99, country: 'Brazil', description },
-                { id: 2, imgSrc: srcBest3, imgAlt: 'Coffee 2', name: 'AROMISTICO Coffee 1 kg', price: 6.99, country: 'Kenya', description },
+                { id: 2, imgSrc: srcBest3, imgAlt: 'Coffee 2', name: 'ASDF Coffee 1 kg', price: 6.99, country: 'Kenya', description },
                 { id: 3, imgSrc: srcBest3, imgAlt: 'Coffee 3', name: 'AROMISTICO Coffee 1 kg', price: 6.99, country: 'Columbia', description },
-                { id: 4, imgSrc: srcBest3, imgAlt: 'Coffee 4', name: 'AROMISTICO Coffee 1 kg', price: 6.99, country: 'Brazil', description },
-                { id: 5, imgSrc: srcBest3, imgAlt: 'Coffee 5', name: 'AROMISTICO Coffee 1 kg', price: 6.99, country: 'Brazil', description },
+                { id: 4, imgSrc: srcBest3, imgAlt: 'Coffee 4', name: 'AQWERTY Coffee 1 kg', price: 6.99, country: 'Brazil', description },
+                { id: 5, imgSrc: srcBest3, imgAlt: 'Coffee 5', name: 'AQWERTY Coffee 1 kg', price: 6.99, country: 'Brazil', description },
                 { id: 6, imgSrc: srcBest3, imgAlt: 'Coffee 6', name: 'AROMISTICO Coffee 1 kg', price: 6.99, country: 'Brazil', description },
             ],
-            selectedCoffee: {}
+            selectedCoffee: {},
+            searchText: '',
+            filter: ''
         };
     }
 
@@ -58,9 +60,28 @@ class App extends Component {
             selectedCoffee: selectedItem});
     }
 
+    onSearchTextChanged = (searchText) => {
+        this.setState({ searchText });
+    }
+
+    onFilterChanged = (filter) => {
+        this.setState({ filter });
+    }
+
+    filterCoffees = (searchText, filter) => {
+        let items = this.state.coffees;
+        if (filter) {
+            items = items.filter(c => c.country === filter)
+        }
+
+        return items.filter(c => c.name.toLowerCase().includes(searchText.toLowerCase()));
+    }
+
     render() {
         let currentPage = this.state.currentPage;
         let pageChange = this.onPageChange;
+
+        let coffees = this.filterCoffees(this.state.searchText, this.state.filter);
 
         if (currentPage === 'our') {
             return (
@@ -69,10 +90,10 @@ class App extends Component {
                     <About currentPage={currentPage}></About>       
                     <hr className="horizontal_line mx-auto"></hr>
                     <div className="search_filter d-flex justify-content-center">
-                        <SearchPanel></SearchPanel>
-                        <Filter></Filter>
+                        <SearchPanel onSearchTextChanged={this.onSearchTextChanged}></SearchPanel>
+                        <Filter onFilterChanged={this.onFilterChanged}></Filter>
                     </div>
-                    <OurItems onItemClicked={this.onItemClicked} coffees={this.state.coffees}></OurItems>
+                    <OurItems onItemClicked={this.onItemClicked} coffees={coffees}></OurItems>
                     <Footer currentPage={currentPage} onPageChange={pageChange} invertColor={true}></Footer>
                 </div>
             );            
@@ -82,7 +103,7 @@ class App extends Component {
                     <Header currentPage={currentPage} onPageChange={pageChange} invertColor={false}></Header>            
                     <About currentPage={currentPage}></About>       
                     <hr className="horizontal_line mx-auto"></hr>
-                    <OurItems onItemClicked={this.onItemClicked} coffees={this.state.coffees}></OurItems>
+                    <OurItems onItemClicked={this.onItemClicked} coffees={coffees}></OurItems>
                     <Footer currentPage={currentPage} onPageChange={pageChange} invertColor={true}></Footer>
                 </div>
             );    

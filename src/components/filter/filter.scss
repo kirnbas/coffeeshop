@@ -25,5 +25,10 @@
                 color: #000;
             }
         }
+
+        li.active {
+            font-weight: bold;
+            text-decoration: underline;
+        }
     }
 }

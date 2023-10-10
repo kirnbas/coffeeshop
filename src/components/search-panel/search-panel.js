@@ -1,10 +1,10 @@
 import './search-panel.scss';
 
-const SearchPanel = () => {
+const SearchPanel = ( {onSearchTextChanged} ) => {
     return (
         <div className='search_panel'>
             <label>Lookiing for</label>
-            <input placeholder='start typing here...'></input>
+            <input placeholder='start typing here...' onChange={e => onSearchTextChanged(e.target.value)}></input>
         </div>
     );
 };
